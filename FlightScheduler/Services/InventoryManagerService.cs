@@ -44,6 +44,7 @@ namespace FlightScheduler.Services
                 return orders;
             }
 
+            // We group the orders by destination once. So it is very quick to find the orders for a particular flight's destination.
             Dictionary<string, Queue<Order>> destinationOrdersMapping = GroupOrdersByDestination(orders); // the key is the destination.
 
             foreach (var flight in flights)
@@ -59,7 +60,6 @@ namespace FlightScheduler.Services
 
             return orders;
         }
-
         
         private void AssignOrdersToFlight(Flight flight, Queue<Order> ordersForDestination)
         {
